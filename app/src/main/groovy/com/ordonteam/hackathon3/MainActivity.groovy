@@ -7,6 +7,7 @@ import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
 import com.arasthel.swissknife.annotations.OnClick
 import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage
+import com.google.android.gms.games.multiplayer.realtime.RealTimeMultiplayer
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -43,7 +44,9 @@ class MainActivity extends RoomActivity {
 
     @OnClick(R.id.send)
     public void send() {
-        sendUnreliableMessageToOthers(editText.text.toString().bytes)
+       if( sendUnreliableMessageToOthers(editText.text.toString().bytes) == RealTimeMultiplayer.REAL_TIME_MESSAGE_FAILED){
+           throw new RuntimeException("Error while sending unreliable message!")
+       }
     }
 
     @Override
