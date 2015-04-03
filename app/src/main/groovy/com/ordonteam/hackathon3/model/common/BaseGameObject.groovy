@@ -17,12 +17,10 @@ abstract class BaseGameObject implements GameDrawable, Serializable{
         this.location = location
     }
 
-    MoveDirection move() {
-        return MoveDirection.NOWHERE
-    }
-    
+    abstract MoveDirection move()
+
     void draw(ScaledCanvas canvas) {
-        canvas.drawRectangle(location,getPaint())
+        canvas.drawRectangle(location, paint)
     }
 
     abstract BaseGameObject withNewLocation(MoveDirection moveDirection);

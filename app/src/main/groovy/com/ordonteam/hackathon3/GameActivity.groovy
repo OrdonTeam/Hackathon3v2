@@ -7,6 +7,8 @@ import com.arasthel.swissknife.annotations.InjectView
 import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage
 import com.ordonteam.hackathon3.controller.GameObjectsDispatcher
 import com.ordonteam.hackathon3.model.board.Board
+import com.ordonteam.hackathon3.model.board.BoardGenerator
+import com.ordonteam.hackathon3.model.common.Dimension
 import com.ordonteam.hackathon3.view.GameViewController
 import com.ordonteam.hackathon3.view.PlayerPadView
 import groovy.transform.CompileStatic
@@ -30,7 +32,7 @@ class GameActivity extends RoomActivity {
     @Override
     void startGame(String myParticipantId) {
         dispatcher = new GameObjectsDispatcher(myParticipantId, gameViewController,this)
-        def board = Board.generateBoard(3)
+        def board = new BoardGenerator().generateBoard(Dimension.xy(9, 9))
         dispatcher.fromGameController(board)
     }
 

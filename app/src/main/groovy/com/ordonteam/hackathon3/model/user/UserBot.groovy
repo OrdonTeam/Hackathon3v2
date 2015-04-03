@@ -12,8 +12,6 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class UserBot extends BaseGameObject implements Serializable {
     static final long serialVersionUID = 42L
-    static final Paint paint = GamePaint.forColor(Color.CYAN)
-
     private transient PlayerPadView playerPadView
 
     UserBot(Dimension location, PlayerPadView playerPadView) {
@@ -33,6 +31,6 @@ class UserBot extends BaseGameObject implements Serializable {
 
     @Override
     Paint getPaint(){
-        return paint
+        return GamePaint.forColor(Color.CYAN)
     }
 }
