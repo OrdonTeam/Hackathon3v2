@@ -1,10 +1,15 @@
-package com.ordonteam.hackathon3.model
+package com.ordonteam.hackathon3.model.mobs
 
+import com.ordonteam.hackathon3.model.user.UserBot
+import com.ordonteam.hackathon3.model.board.Board
+import com.ordonteam.hackathon3.model.board.Wall
+import com.ordonteam.hackathon3.model.common.BaseGameObject
+import com.ordonteam.hackathon3.model.common.MoveDirection
 import com.ordonteam.hackathon3.view.PlayerPadView
 import com.ordonteam.hackathon3.view.utils.ScaledCanvas
 import groovy.transform.CompileStatic
 
-import static com.ordonteam.hackathon3.model.Dimension.xy
+import static com.ordonteam.hackathon3.model.common.Dimension.xy
 
 @CompileStatic
 class GameObjects implements Serializable{

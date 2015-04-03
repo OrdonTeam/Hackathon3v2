@@ -1,7 +1,7 @@
 package com.ordonteam.hackathon3.view
 
 import android.widget.LinearLayout
-import com.ordonteam.hackathon3.model.MoveDirection
+import com.ordonteam.hackathon3.model.common.MoveDirection
 import groovy.transform.CompileStatic
 import groovy.transform.InheritConstructors
 

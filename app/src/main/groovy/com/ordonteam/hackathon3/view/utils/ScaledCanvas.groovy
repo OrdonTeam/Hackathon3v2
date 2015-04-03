@@ -2,7 +2,7 @@ package com.ordonteam.hackathon3.view.utils
 
 import android.graphics.Canvas
 import android.graphics.Paint
-import com.ordonteam.hackathon3.model.Dimension
+import com.ordonteam.hackathon3.model.common.Dimension
 import com.ordonteam.hackathon3.view.common.Scale
 import groovy.transform.CompileStatic
 

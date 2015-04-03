@@ -4,8 +4,8 @@ import android.graphics.Canvas
 import android.util.Log
 import android.widget.LinearLayout
 import com.ordonteam.hackathon3.controller.GameObjectsConsumer
-import com.ordonteam.hackathon3.model.Board
-import com.ordonteam.hackathon3.model.GameObjects
+import com.ordonteam.hackathon3.model.board.Board
+import com.ordonteam.hackathon3.model.mobs.GameObjects
 import com.ordonteam.hackathon3.view.common.Scale
 import com.ordonteam.hackathon3.view.utils.ScaledCanvas
 import groovy.transform.CompileStatic

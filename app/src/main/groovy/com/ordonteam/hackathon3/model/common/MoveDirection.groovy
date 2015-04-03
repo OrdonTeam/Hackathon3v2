@@ -1,4 +1,4 @@
-package com.ordonteam.hackathon3.model
+package com.ordonteam.hackathon3.model.common
 
 import groovy.transform.CompileStatic
 

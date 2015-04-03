@@ -57,8 +57,6 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
         Log.i("OrdonTeam", "sendUnreliableMessageToOthers result OK")
     }
 
-    abstract void onRoomCreationFailure(int statusCode)
-
     @Override
     protected void onActivityResult(int requestCode, int responseCode, Intent data) {
         if (requestCode == RC_WAITING_ROOM) {
@@ -74,6 +72,24 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
     }
 
     abstract void startGame(String myParticipantId)
+
+
+    void onRoomCreationFailure(int statusCode) {
+        Log.e("OrdonTeam", "onRoomCreationFailure")
+        finish()
+    }
+
+    @Override
+    void onConnectFailed(int i) {
+        Log.e("OrdonTeam", "OnConnectFailed")
+        finish()
+    }
+
+    @Override
+    void onNotSignedIn(int errorCode) {
+        Log.e("OrdonTeam", "onNotSignedIn")
+        finish()
+    }
 
     @Override
     void onLeftRoom(int i, String s) {

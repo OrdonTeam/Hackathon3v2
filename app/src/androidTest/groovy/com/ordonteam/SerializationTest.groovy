@@ -1,11 +1,11 @@
 package com.ordonteam
 
 import com.google.android.gms.games.multiplayer.Multiplayer
-import com.ordonteam.hackathon3.model.Dimension
-import com.ordonteam.hackathon3.model.Wall
+import com.ordonteam.hackathon3.model.common.Dimension
+import com.ordonteam.hackathon3.model.board.Wall
 import spock.lang.Specification
 
-import static com.ordonteam.hackathon3.model.Board.generateBoard
+import static com.ordonteam.hackathon3.model.board.Board.generateBoard
 
 class SerializationTest extends Specification{
 

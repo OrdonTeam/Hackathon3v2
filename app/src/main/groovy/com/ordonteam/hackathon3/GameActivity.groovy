@@ -6,7 +6,7 @@ import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
 import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage
 import com.ordonteam.hackathon3.controller.GameObjectsDispatcher
-import com.ordonteam.hackathon3.model.Board
+import com.ordonteam.hackathon3.model.board.Board
 import com.ordonteam.hackathon3.view.GameViewController
 import com.ordonteam.hackathon3.view.PlayerPadView
 import groovy.transform.CompileStatic
@@ -44,23 +44,5 @@ class GameActivity extends RoomActivity {
     void onP2PConnected(String s) {
         super.onP2PConnected(s)
         dispatcher.networkController.newBoard(dispatcher.board)
-    }
-
-    @Override
-    void onRoomCreationFailure(int statusCode) {
-        Log.e("OrdonTeam", "onRoomCreationFailure")
-        finish()
-    }
-
-    @Override
-    void onConnectFailed(int i) {
-        Log.e("OrdonTeam", "OnConnectFailed")
-        finish()
-    }
-
-    @Override
-    void onNotSignedIn(int errorCode) {
-        Log.e("OrdonTeam", "onNotSignedIn")
-        finish()
     }
 }

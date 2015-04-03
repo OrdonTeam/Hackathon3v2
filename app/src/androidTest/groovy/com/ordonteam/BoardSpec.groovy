@@ -1,8 +1,7 @@
 package com.ordonteam
 
-import com.ordonteam.hackathon3.model.Board
-import com.ordonteam.hackathon3.model.Dimension
-import junit.framework.TestCase
+import com.ordonteam.hackathon3.model.board.Board
+import com.ordonteam.hackathon3.model.common.Dimension
 import spock.lang.Specification
 
 class BoardSpec extends Specification{
