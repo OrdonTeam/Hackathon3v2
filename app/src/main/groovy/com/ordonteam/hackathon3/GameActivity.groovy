@@ -36,7 +36,14 @@ class GameActivity extends RoomActivity {
 
     @Override
     void onRealTimeMessageReceived(RealTimeMessage realTimeMessage) {
+        Log.e("onRealTimeMessageReceived", "${realTimeMessage.messageData.length}")
         dispatcher.fromNetwork(realTimeMessage.senderParticipantId,realTimeMessage.messageData)
+    }
+
+    @Override
+    void onP2PConnected(String s) {
+        super.onP2PConnected(s)
+        dispatcher.networkController.newBoard(dispatcher.board)
     }
 
     @Override

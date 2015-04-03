@@ -2,6 +2,7 @@ package com.ordonteam.hackathon3.model
 
 import com.ordonteam.hackathon3.view.GameDrawable
 import com.ordonteam.hackathon3.view.utils.ScaledCanvas
+import groovy.transform.Canonical
 import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic
 
@@ -23,7 +24,7 @@ class Board implements GameDrawable, Serializable {
     }
 
     static Board generateBoard(int playerNumber) {
-        return generateBoard(Dimension.xy(20, 20))
+        return generateBoard(Dimension.xy(10, 10))
     }
 
 //  TODO: remove compile dynamic
@@ -38,7 +39,7 @@ class Board implements GameDrawable, Serializable {
             board.walls.add(new Wall(xy(0, y)))
             board.walls.add(new Wall(xy(size.x - 1, y)))
         }
-        board.walls.add(new Wall(xy(new Random().nextInt(size.x),new Random().nextInt(size.y))))
+        board.walls.add(new Wall(xy(new Random().nextInt(size.x-2)+1,new Random().nextInt(size.y-2)+1)))
         board.hashCode = new Random().nextLong()
         return board
     }

@@ -12,7 +12,6 @@ class BoardSpec extends Specification{
         def b1 = Board.generateBoard(new Dimension(100, 100))
         def b2 = Board.generateBoard(new Dimension(100, 100))
 
-
         expect:
         Board.chooseBoard(b1, b2) == Board.chooseBoard(b2, b1)
     }

@@ -1,5 +1,6 @@
 package com.ordonteam.hackathon3.controller
 
+import android.util.Log
 import com.ordonteam.hackathon3.model.Board
 import com.ordonteam.hackathon3.model.GameObjects
 import com.ordonteam.hackathon3.view.GameViewController
@@ -41,12 +42,14 @@ class GameObjectsDispatcher {
     }
 
     void fromNetwork(String participantId, Board newBoard) {
+        Log.e("onRealTimeMessageReceived", "new Board")
         board = Board.chooseBoard(board, newBoard)
         gameController.newBoard(board)
         gameViewController.newBoard(board)
     }
 
     void fromNetwork(String participantId, GameObjects gameObjects) {
+        Log.e("onRealTimeMessageReceived", "new GameObjects")
         gameController.newObjects(participantId, gameObjects)
         gameViewController.newObjects(participantId, gameObjects)
     }

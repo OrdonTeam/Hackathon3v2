@@ -2,13 +2,13 @@ package com.ordonteam.functional;
 
 import android.test.ActivityInstrumentationTestCase2;
 
-import com.ordonteam.hackathon3.MainActivity;
+import com.ordonteam.hackathon3.GameActivity;
 
 
-public abstract class BaseInstrumentationTestCase extends ActivityInstrumentationTestCase2<MainActivity> {
+public abstract class BaseInstrumentationTestCase extends ActivityInstrumentationTestCase2<GameActivity> {
 
     public BaseInstrumentationTestCase() {
-        super(MainActivity.class);
+        super(GameActivity.class);
     }
 
 }

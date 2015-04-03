@@ -5,6 +5,6 @@ import groovy.transform.CompileStatic
 @CompileStatic
 interface MessageSender {
 
-    int sendUnreliableMessageToOthers(byte[] bytes)
+    void sendUnreliableMessageToOthers(byte[] bytes)
 
 }
