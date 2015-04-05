@@ -3,7 +3,7 @@ package com.ordonteam.hackathon3.controller
 import android.util.Log
 import com.ordonteam.hackathon3.model.board.Board
 import com.ordonteam.hackathon3.model.board.BoardChooser
-import com.ordonteam.hackathon3.model.mobs.GameObjects
+import com.ordonteam.hackathon3.model.common.GameObjects
 import com.ordonteam.hackathon3.view.GameViewController
 import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic

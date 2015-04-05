@@ -1,13 +1,15 @@
 package com.ordonteam.hackathon3.model.user
 
+import com.ordonteam.hackathon3.model.board.Board
 import com.ordonteam.hackathon3.model.common.BaseGameObject
 import com.ordonteam.hackathon3.model.common.Dimension
+import com.ordonteam.hackathon3.model.common.GameObjects
 import com.ordonteam.hackathon3.model.common.MoveDirection
 import com.ordonteam.hackathon3.view.PlayerPadView
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class SelfUserBot extends UserBot {
+class SelfUserBot extends UserBot{
 
     private transient PlayerPadView playerPadView
 
@@ -17,7 +19,7 @@ class SelfUserBot extends UserBot {
     }
 
     @Override
-    MoveDirection move() {
+    MoveDirection move(Board board, GameObjects gameObjects) {
         return playerPadView.getCurrentInclination()
     }
 

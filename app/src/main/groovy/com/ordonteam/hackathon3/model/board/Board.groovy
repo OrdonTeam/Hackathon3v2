@@ -19,4 +19,9 @@ class Board implements GameDrawable, Serializable {
             it.draw(canvas)
         }
     }
+
+    List<Dimension> wallsAround(Dimension dimension) {
+        //TODO: This location should be relative
+        return walls*.location
+    }
 }

@@ -2,7 +2,7 @@ package com.ordonteam.hackathon3.controller
 
 import android.util.Log
 import com.ordonteam.hackathon3.model.board.Board
-import com.ordonteam.hackathon3.model.mobs.GameObjects
+import com.ordonteam.hackathon3.model.common.GameObjects
 import com.ordonteam.hackathon3.view.GroovyLock
 import groovy.transform.CompileStatic
 
@@ -22,7 +22,7 @@ class GameController implements GameObjectsConsumer{
 
     void moveAll() {
         lock.withLock {
-            gameObjects = gameObjects.moveAll()
+            gameObjects = gameObjects.moveAll(null, null)
         }
         dispatcher.fromGameController(gameObjects)
     }

@@ -1,5 +1,6 @@
 package com.ordonteam.hackathon3.model.common
 
+import com.ordonteam.hackathon3.model.board.Board
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -9,7 +10,7 @@ abstract class UnmovableGameObject extends BaseGameObject{
     }
 
     @Override
-    final MoveDirection move() {
+    final MoveDirection move(Board board, GameObjects gameObjects) {
         return MoveDirection.NOWHERE
     }
 

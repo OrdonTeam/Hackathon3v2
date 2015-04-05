@@ -12,6 +12,7 @@ public class Dimension implements Serializable {
     final int height
 
     Dimension(int width, int height) {
+        //TODO: private constructor  - caching objects
         this.height = height
         this.width = width
     }
@@ -25,6 +26,7 @@ public class Dimension implements Serializable {
     }
 
     static Dimension xy(int x, int y) {
+        //TODO: Cache objects
         return new Dimension(x, y)
     }
 
