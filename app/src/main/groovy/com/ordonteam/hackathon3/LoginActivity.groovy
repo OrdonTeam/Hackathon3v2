@@ -18,14 +18,12 @@ abstract class LoginActivity extends Activity implements GoogleApiClient.Connect
     @Override
     protected void onStart() {
         super.onStart()
-        if (!client) {
-            client = new GoogleApiClient.Builder(this)
-                    .addConnectionCallbacks(this)
-                    .addOnConnectionFailedListener(this)
-                    .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
-                    .addApi(Games.API).addScope(Games.SCOPE_GAMES)
-                    .build();
-        }
+        client = client ?: new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
+                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                .build()
         if (!client.isConnected() && !client.isConnecting()) {
             client.connect()
         }

@@ -70,9 +70,8 @@ class GameObjects implements Serializable {
         if (find) {
             triggerCollision(gameObject, find)
             return gameObject
-        } else {
-            return gameObject.withNewLocation(direction)
         }
+        return gameObject.withNewLocation(direction)
     }
 
     void triggerCollision(BaseGameObject first, BaseGameObject second) {

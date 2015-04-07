@@ -9,11 +9,11 @@ import java.util.concurrent.locks.ReentrantLock
 class GroovyLock {
     Lock lock = new ReentrantLock()
 
-    void withLock(Closure doWithLock){
+    void withLock(Closure doWithLock) {
         lock.lockInterruptibly()
-        try{
+        try {
             doWithLock()
-        }finally {
+        } finally {
             lock.unlock()
         }
     }

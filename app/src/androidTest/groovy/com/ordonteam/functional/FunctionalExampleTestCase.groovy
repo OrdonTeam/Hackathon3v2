@@ -1,14 +1,14 @@
 package com.ordonteam.functional
 
-public final class FunctionalExampleTestCase extends BaseInstrumentationTestCase {
+final class FunctionalExampleTestCase extends BaseInstrumentationTestCase {
 
     @Override
     protected void setUp() throws Exception {
         super.setUp()
-        getActivity()
+        activity //running the getActivity method ;-)
     }
 
-    public void testIsHelloWorldDisplayed() {
+    void testIsHelloWorldDisplayed() {
         //checkIfViewWithTextIsDisplayed("Hello World")
         assert 1 == 1
     }

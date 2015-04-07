@@ -7,7 +7,7 @@ import groovy.transform.InheritConstructors
 
 @CompileStatic
 @InheritConstructors
-class PlayerPadView extends LinearLayout{
+class PlayerPadView extends LinearLayout {
 
     MoveDirection getCurrentInclination() {
         return MoveDirection.DOWN

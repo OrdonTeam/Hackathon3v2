@@ -21,6 +21,8 @@ class GameActivity extends RoomActivity {
     PlayerPadView playerPadView
     private GameObjectsDispatcher dispatcher
 
+    private static final int BOARD_SIZE = 9
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
@@ -31,14 +33,14 @@ class GameActivity extends RoomActivity {
     @Override
     void startGame(String myParticipantId) {
         dispatcher = new GameObjectsDispatcher(myParticipantId, gameViewController,this)
-        def board = new BoardGenerator().generateBoard(Dimension.xy(9, 9))
+        def board = new BoardGenerator().generateBoard(Dimension.xy(BOARD_SIZE, BOARD_SIZE))
         dispatcher.fromGameController(board)
     }
 
     @Override
     void onRealTimeMessageReceived(RealTimeMessage realTimeMessage) {
-        Log.e("onRealTimeMessageReceived", "${realTimeMessage.messageData.length}")
-        dispatcher.fromNetwork(realTimeMessage.senderParticipantId,realTimeMessage.messageData)
+        Log.e('onRealTimeMessageReceived', "${realTimeMessage.messageData.length}")
+        dispatcher.fromNetwork(realTimeMessage.senderParticipantId, realTimeMessage.messageData)
     }
 
     @Override

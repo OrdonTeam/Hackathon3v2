@@ -11,27 +11,27 @@ class ThreadUtil {
     }
 
     static Thread startInteruptableThread(Runnable runnable) {
-        return startThread({
-            try{
+        return startThread( {
+            try {
                 runnable.run()
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 //Ok, ok, do nothing
             }
         })
     }
 
-    static void foreverOnceIn(int milis, Closure closure){
-        while (true){
+    static void foreverOnceIn(int milis, Closure closure) {
+        while (true) {
             long start = System.currentTimeMillis()
             closure()
             long duration = System.currentTimeMillis() - start
-            Thread.sleep(Math.max(milis-duration,0))
+            Thread.sleep(Math.max(milis - duration, 0))
         }
     }
 
     static Thread startInInfiniteLoop(int milis, Closure closure) {
-        return startInteruptableThread{
-            foreverOnceIn(milis,closure)
+        return startInteruptableThread {
+            foreverOnceIn(milis, closure)
         }
     }
 }

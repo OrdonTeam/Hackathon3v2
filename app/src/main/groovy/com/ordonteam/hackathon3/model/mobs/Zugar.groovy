@@ -16,7 +16,7 @@ class Zugar extends UnmovableGameObject implements Serializable {
     }
 
     @Override
-    Paint getPaint(){
+    Paint getPaint() {
         return GamePaint.forColor(Color.GREEN)
     }
 }

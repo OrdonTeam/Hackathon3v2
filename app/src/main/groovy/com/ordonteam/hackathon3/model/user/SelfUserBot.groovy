@@ -9,9 +9,10 @@ import com.ordonteam.hackathon3.view.PlayerPadView
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class SelfUserBot extends UserBot{
+class SelfUserBot extends UserBot implements Serializable {
+    private static final long serialVersionUID = 42L
 
-    private transient PlayerPadView playerPadView
+    private final transient PlayerPadView playerPadView
 
     SelfUserBot(Dimension location, PlayerPadView playerPadView) {
         super(location)
@@ -20,7 +21,7 @@ class SelfUserBot extends UserBot{
 
     @Override
     MoveDirection move(Board board, GameObjects gameObjects) {
-        return playerPadView.getCurrentInclination()
+        return playerPadView.currentInclination
     }
 
     @Override

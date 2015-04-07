@@ -16,15 +16,18 @@
 <ruleset xmlns="http://codenarc.org/ruleset/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://codenarc.org/ruleset/1.0 http://codenarc.org/ruleset-schema.xsd"
     xsi:noNamespaceSchemaLocation="http://codenarc.org/ruleset-schema.xsd">
-    <!--<ruleset-ref path='rulesets/basic.xml'>-->
-    <!--<exclude name='ExplicitHashSetInstantiation'/>-->
-    <!--<exclude name='ExplicitCallToAndMethod'/>-->
-    <!--<exclude name='ExplicitCallToOrMethod'/>-->
-    <!--</ruleset-ref>-->
-    <!--<ruleset-ref path='rulesets/braces.xml'/>-->
+
+    <ruleset-ref path='rulesets/basic.xml'>
+        <exclude name="EmptyMethod"/><!--TODO: This should be removed in future-->
+        <exclude name="ComparisonOfTwoConstants"/><!--TODO: This should be removed in future-->
+        <exclude name="EmptyCatchBlock"/> <!--Only for interrupt exception TODO: check if it could be configured-->
+        <exclude name="ConstantAssertExpression"/><!--TODO: This should be removed in future-->
+    </ruleset-ref>
+
     <ruleset-ref path='rulesets/imports.xml'>
         <exclude name="MisorderedStaticImports"/>
     </ruleset-ref>
+
     <ruleset-ref path='rulesets/naming.xml'>
         <rule-config name='ClassName'>
             <property name='regex' value='^[A-Z][\$a-zA-Z0-9]*$'/>
@@ -39,7 +42,55 @@
         <rule-config name='VariableName'>
             <property name='finalRegex' value='^[a-z][a-zA-Z0-9]*$'/>
         </rule-config>
-        <exclude name="ConfusingMethodName"/>
-        <exclude name="FactoryMethodName"/>
     </ruleset-ref>
+
+    <ruleset-ref path='rulesets/concurrency.xml'/>
+
+    <ruleset-ref path='rulesets/convention.xml'/>
+
+    <ruleset-ref path='rulesets/design.xml'>
+        <exclude name="AbstractClassWithPublicConstructor"/>
+    </ruleset-ref>
+
+    <ruleset-ref path='rulesets/dry.xml'>
+            <exclude name="DuplicateNumberLiteral"/>
+    </ruleset-ref>
+
+    <ruleset-ref path='rulesets/enhanced.xml'/>
+
+    <ruleset-ref path='rulesets/formatting.xml'>
+        <rule-config name='LineLength'>
+            <property name='length' value='180'/>
+        </rule-config>
+        <exclude name="SpaceAroundMapEntryColon"/>
+        <exclude name="ClassJavadoc"/>
+    </ruleset-ref>
+
+    <ruleset-ref path='rulesets/exceptions.xml'>
+        <exclude name="ThrowRuntimeException"/>
+    </ruleset-ref>
+
+    <ruleset-ref path='rulesets/generic.xml'/>
+
+    <ruleset-ref path='rulesets/groovyism.xml'>
+        <exclude name="ClosureAsLastMethodParameter"/>
+    </ruleset-ref>
+
+    <ruleset-ref path='rulesets/junit.xml'>
+        <exclude name="JUnitPublicNonTestMethod"/>
+        <exclude name="JUnitAssertAlwaysSucceeds"/><!--TODO: This should be removed in future-->
+    </ruleset-ref>
+
+    <ruleset-ref path='rulesets/serialization.xml'/>
+
+    <ruleset-ref path='rulesets/size.xml'/>
+
+    <ruleset-ref path='rulesets/unnecessary.xml'>
+        <exclude name="UnnecessaryReturnKeyword"/>
+    </ruleset-ref>
+
+    <ruleset-ref path='rulesets/unused.xml'>
+        <exclude name="UnusedMethodParameter"/>  <!--TODO: This should be removed in future-->
+    </ruleset-ref>
+
 </ruleset>

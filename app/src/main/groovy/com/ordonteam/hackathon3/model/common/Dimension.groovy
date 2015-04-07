@@ -1,11 +1,11 @@
 package com.ordonteam.hackathon3.model.common
 
 import groovy.transform.Canonical
-import groovy.transform.CompileStatic;
+import groovy.transform.CompileStatic
 
 @CompileStatic
 @Canonical
-public class Dimension implements Serializable {
+class Dimension implements Serializable {
     private static final long serialVersionUID = 42L
 
     final int width
@@ -17,11 +17,11 @@ public class Dimension implements Serializable {
         this.width = width
     }
 
-    int getX(){
+    int getX() {
         return width
     }
 
-    int getY(){
+    int getY() {
         return height
     }
 
@@ -31,6 +31,6 @@ public class Dimension implements Serializable {
     }
 
     Dimension to(MoveDirection moveDirection) {
-        return new Dimension(width+moveDirection.x,height+moveDirection.y)
+        return new Dimension(width + moveDirection.x,height + moveDirection.y)
     }
 }

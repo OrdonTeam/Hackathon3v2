@@ -2,7 +2,7 @@ package com.ordonteam
 
 import spock.lang.Specification
 
-public final class SpockExampleTest extends Specification {
+final class SpockExampleTest extends Specification {
 
     def "Spock example should run and pass"() {
         given:

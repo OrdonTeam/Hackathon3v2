@@ -6,7 +6,7 @@ import com.ordonteam.hackathon3.model.board.Wall
 import com.ordonteam.hackathon3.model.common.Dimension
 import spock.lang.Specification
 
-class SerializationTest extends Specification{
+class SerializationTest extends Specification {
 
     def "Sending object should not be bigger than 1168 bytes"() {
         given:
@@ -19,7 +19,7 @@ class SerializationTest extends Specification{
         bytes.length <= Multiplayer.MAX_UNRELIABLE_MESSAGE_LEN
     }
 
-    def "Paint should be serializable"(){
+    def "Paint should be serializable"() {
         Wall wall = new Wall(new Dimension(1, 1))
         Wall unpersistedWall
 
@@ -34,7 +34,7 @@ class SerializationTest extends Specification{
     }
 
     static byte[] persist(Object objectToPersist) {
-        ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream()
         byteOutputStream.withObjectOutputStream { ObjectOutputStream stream ->
             stream.writeObject(objectToPersist)
         }

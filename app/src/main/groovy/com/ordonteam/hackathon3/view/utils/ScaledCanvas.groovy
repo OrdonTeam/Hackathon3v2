@@ -21,6 +21,6 @@ class ScaledCanvas {
         canvas.drawRect((float) (dimension.width * scale.x),
                 (float) (dimension.height * scale.y),
                 (float) ((dimension.width + 1) * scale.x),
-                (float) ((dimension.height + 1) * scale.y), paint);
+                (float) ((dimension.height + 1) * scale.y), paint)
     }
 }

@@ -23,13 +23,13 @@ class GameObjectsDispatcher {
         this.networkController = new NetworkController(sender)
     }
 
-    void fromGameController(Board newBoard){
+    void fromGameController(Board newBoard) {
         board = new BoardChooser().chooseBoard(board, newBoard)
         gameViewController.newBoard(board)
         networkController.newBoard(board)
     }
 
-    void fromGameController(GameObjects gameObjects){
+    void fromGameController(GameObjects gameObjects) {
         gameViewController.newObjects(myParticipantId, gameObjects)
         networkController.newObjects(myParticipantId, gameObjects)
     }
@@ -43,14 +43,14 @@ class GameObjectsDispatcher {
     }
 
     void fromNetwork(String participantId, Board newBoard) {
-        Log.e("onRealTimeMessageReceived", "new Board")
+        Log.e('onRealTimeMessageReceived ->board', 'new Board')
         board = new BoardChooser().chooseBoard(board, newBoard)
         gameController.newBoard(board)
         gameViewController.newBoard(board)
     }
 
     void fromNetwork(String participantId, GameObjects gameObjects) {
-        Log.e("onRealTimeMessageReceived", "new GameObjects")
+        Log.e('onRealTimeMessageReceived ->gameObjects', 'new GameObjects')
         gameController.newObjects(participantId, gameObjects)
         gameViewController.newObjects(participantId, gameObjects)
     }

@@ -9,7 +9,7 @@ import groovy.transform.InheritConstructors
 
 @CompileStatic
 @InheritConstructors
-class OtherUserBot extends UserBot implements Serializable{
+class OtherUserBot extends UserBot implements Serializable {
     private static final long serialVersionUID = 42L
 
     @Override

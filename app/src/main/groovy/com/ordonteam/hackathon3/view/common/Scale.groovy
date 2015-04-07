@@ -16,16 +16,16 @@ class Scale {
         this.y = y
     }
 
-    Scale(Dimension screenDimension, Dimension drawableDimension){
+    Scale(Dimension screenDimension, Dimension drawableDimension) {
         x = drawableDimension.width / screenDimension.width
         y = drawableDimension.height / screenDimension.height
     }
 
-    float scaleAsX(float x){
+    float scaleAsX(float x) {
         return this.x * x
     }
 
-    float scaleAsY(float y){
+    float scaleAsY(float y) {
         return this.y * y
     }
 

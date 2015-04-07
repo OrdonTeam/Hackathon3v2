@@ -13,7 +13,7 @@ abstract class UserBot extends BaseGameObject implements Serializable {
     private static final long serialVersionUID = 42L
 
     @Override
-    Paint getPaint(){
+    Paint getPaint() {
         return GamePaint.forColor(Color.CYAN)
     }
 }

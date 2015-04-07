@@ -5,7 +5,7 @@ import com.ordonteam.hackathon3.model.common.GameObjects
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class NetworkController implements GameObjectsConsumer{
+class NetworkController implements GameObjectsConsumer {
 
     MessageSender sender
 
@@ -24,7 +24,7 @@ class NetworkController implements GameObjectsConsumer{
     }
 
     static byte[] persist(Object objectToPersist) {
-        ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream()
         byteOutputStream.withObjectOutputStream { ObjectOutputStream stream ->
             stream.writeObject(objectToPersist)
         }

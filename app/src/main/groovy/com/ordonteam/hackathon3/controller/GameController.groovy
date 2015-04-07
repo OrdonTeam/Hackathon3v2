@@ -9,14 +9,14 @@ import groovy.transform.CompileStatic
 import static com.ordonteam.hackathon3.utils.ThreadUtil.startInteruptableThread
 
 @CompileStatic
-class GameController implements GameObjectsConsumer{
+class GameController implements GameObjectsConsumer {
     GameObjects gameObjects
     private Thread thread
     private GameObjectsDispatcher dispatcher
     final GroovyLock lock = new GroovyLock()
     Board board
 
-    void setDispather(GameObjectsDispatcher dispatcher){
+    void setDispather(GameObjectsDispatcher dispatcher) {
         this.dispatcher = dispatcher
     }
 
@@ -28,10 +28,10 @@ class GameController implements GameObjectsConsumer{
     }
 
     void onResume() {
-        thread = startInteruptableThread({
+        thread = startInteruptableThread( {
             while (true) {
                 moveAll()
-                Log.e("move", "all")
+                Log.e('move', 'all')
                 Thread.sleep(1000)
             }
         })
@@ -41,7 +41,7 @@ class GameController implements GameObjectsConsumer{
         thread.interrupt()
     }
 
-    void newObjects(String participantId, GameObjects gameObjects){
+    void newObjects(String participantId, GameObjects gameObjects) {
         lock.withLock {
             this.gameObjects = gameObjects
         }
