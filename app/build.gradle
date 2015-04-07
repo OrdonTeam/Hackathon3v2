@@ -15,6 +15,7 @@ repositories {
 
 apply plugin: 'com.android.application'
 apply plugin: 'groovyx.grooid.groovy-android'
+apply plugin: 'codenarc'
 
 android {
     compileSdkVersion 22
@@ -52,7 +53,9 @@ android {
         exclude 'LICENSE.txt'
     }
     lintOptions {
-        abortOnError false
+        abortOnError true
+        // use this line to check all rules except those listed
+        disable 'InvalidPackage'
     }
 }
 
@@ -75,3 +78,24 @@ dependencies {
     compile 'com.google.android.gms:play-services:6.5.87'
     compile 'com.arasthel:swissknife:1.2.2'
 }
+
+
+task codenarc(type: CodeNarc) {
+    configFile =  file("config/codenarc/codenarc.xml")
+    def allGroovySourceDirs = ['src/main/groovy','src/androidTest']
+    exclude '**/*.java'
+
+    allGroovySourceDirs.each {
+        source(it)
+    }
+    maxPriority1Violations = 5
+    maxPriority2Violations = 5
+    maxPriority3Violations = 5
+}
+//tasks connectedAndroidTest.dependsOn codenarc
+//task connectedAndroidTest.dependsOn codenarc
+
+task fullTest
+fullTest.dependsOn "codenarc"
+fullTest.dependsOn "check"
+fullTest.dependsOn "connectedAndroidTest"
