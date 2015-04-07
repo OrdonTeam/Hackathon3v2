@@ -7,7 +7,12 @@ import com.google.android.gms.games.Games
 import com.google.android.gms.games.GamesActivityResultCodes
 import com.google.android.gms.games.GamesStatusCodes
 import com.google.android.gms.games.multiplayer.Multiplayer
-import com.google.android.gms.games.multiplayer.realtime.*
+import com.google.android.gms.games.multiplayer.realtime.RealTimeMessageReceivedListener
+import com.google.android.gms.games.multiplayer.realtime.RealTimeMultiplayer
+import com.google.android.gms.games.multiplayer.realtime.Room
+import com.google.android.gms.games.multiplayer.realtime.RoomConfig
+import com.google.android.gms.games.multiplayer.realtime.RoomStatusUpdateListener
+import com.google.android.gms.games.multiplayer.realtime.RoomUpdateListener
 import com.ordonteam.hackathon3.controller.MessageSender
 import groovy.transform.CompileStatic
 

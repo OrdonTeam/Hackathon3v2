@@ -10,7 +10,7 @@ import groovy.transform.InheritConstructors
 @CompileStatic
 @InheritConstructors
 class OtherUserBot extends UserBot implements Serializable{
-    static final long serialVersionUID = 42L
+    private static final long serialVersionUID = 42L
 
     @Override
     MoveDirection move(Board board, GameObjects gameObjects) {

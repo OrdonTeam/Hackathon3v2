@@ -6,7 +6,6 @@ import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
 import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage
 import com.ordonteam.hackathon3.controller.GameObjectsDispatcher
-import com.ordonteam.hackathon3.model.board.Board
 import com.ordonteam.hackathon3.model.board.BoardGenerator
 import com.ordonteam.hackathon3.model.common.Dimension
 import com.ordonteam.hackathon3.view.GameViewController

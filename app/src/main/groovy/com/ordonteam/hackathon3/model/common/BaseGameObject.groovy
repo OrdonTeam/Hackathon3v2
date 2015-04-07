@@ -10,7 +10,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 @Canonical
 abstract class BaseGameObject implements GameDrawable, Serializable{
-    static final long serialVersionUID = 42L
+    private static final long serialVersionUID = 42L
 
     final Dimension location
 

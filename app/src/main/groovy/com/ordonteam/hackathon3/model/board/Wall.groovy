@@ -9,7 +9,7 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class Wall extends UnmovableGameObject implements Serializable {
-    static final long serialVersionUID = 42L
+    private static final long serialVersionUID = 42L
 
     Wall(Dimension location) {
         super(location)

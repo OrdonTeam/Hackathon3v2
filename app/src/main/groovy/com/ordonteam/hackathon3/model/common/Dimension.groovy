@@ -6,7 +6,7 @@ import groovy.transform.CompileStatic;
 @CompileStatic
 @Canonical
 public class Dimension implements Serializable {
-    static final long serialVersionUID = 42L
+    private static final long serialVersionUID = 42L
 
     final int width
     final int height

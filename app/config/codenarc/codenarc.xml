@@ -23,7 +23,6 @@
     <!--</ruleset-ref>-->
     <!--<ruleset-ref path='rulesets/braces.xml'/>-->
     <ruleset-ref path='rulesets/imports.xml'>
-        <exclude name="ImportFromSunPackages"/>
         <exclude name="MisorderedStaticImports"/>
     </ruleset-ref>
     <ruleset-ref path='rulesets/naming.xml'>

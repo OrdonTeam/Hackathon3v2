@@ -7,7 +7,7 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class Board implements GameDrawable, Serializable {
-    static final long serialVersionUID = 42L
+    private static final long serialVersionUID = 42L
 
     long hashCode
     Dimension size

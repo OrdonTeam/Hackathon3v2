@@ -15,7 +15,7 @@ import static com.ordonteam.hackathon3.model.common.Dimension.xy
 
 @CompileStatic
 class GameObjects implements Serializable {
-    static final long serialVersionUID = 42L
+    private static final long serialVersionUID = 42L
 
     final int turn
     final Set<BaseGameObject> gameObjects

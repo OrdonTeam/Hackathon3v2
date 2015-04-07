@@ -9,7 +9,7 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class Zugar extends UnmovableGameObject implements Serializable {
-    static final long serialVersionUID = 42L
+    private static final long serialVersionUID = 42L
 
     Zugar(Dimension location) {
         super(location)

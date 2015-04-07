@@ -12,7 +12,7 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class Snorg extends BaseGameObject implements Serializable {
-    static final long serialVersionUID = 42L
+    private static final long serialVersionUID = 42L
 
     Snorg(Dimension location) {
         super(location)
