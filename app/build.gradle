@@ -82,8 +82,8 @@ dependencies {
 
 
 task codenarc(type: CodeNarc) {
-    configFile =  file("config/codenarc/codenarc.xml")
-    def allGroovySourceDirs = ['src/main/groovy','src/androidTest']
+    configFile =  file("config/codenarc/codenarc.groovy")
+    def allGroovySourceDirs = ['src/main/groovy','src/androidTest/groovy']
     exclude '**/*.java'
 
     allGroovySourceDirs.each {

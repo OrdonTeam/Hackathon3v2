@@ -14,7 +14,7 @@ class ThreadUtil {
         return startThread( {
             try {
                 runnable.run()
-            } catch (InterruptedException e) {
+            } catch (InterruptedException ignored) {
                 //Ok, ok, do nothing
             }
         })
