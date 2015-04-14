@@ -34,6 +34,7 @@ ruleset {
 
     ruleset('rulesets/design.xml'){
         AbstractClassWithPublicConstructor(enabled: false)
+        AbstractClassWithoutAbstractMethod(enabled: false)
     }
 
     ruleset('rulesets/dry.xml'){
