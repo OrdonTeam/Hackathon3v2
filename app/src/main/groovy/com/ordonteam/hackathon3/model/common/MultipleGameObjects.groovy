@@ -19,6 +19,7 @@ class MultipleGameObjects implements Serializable {
 
     final int turn
     final Set<SingleGameObject> gameObjects
+    Map<String,MultipleGameObjects> fromOthers
 
     MultipleGameObjects(Set<SingleGameObject> gameObjects) {
         this(0, gameObjects)
@@ -46,25 +47,29 @@ class MultipleGameObjects implements Serializable {
         gameObjects.add(object)
     }
 
-    MultipleGameObjects moveAll(Board board, MultipleGameObjects fromOthers) {
-        List<? extends SingleGameObject> allGameObjects = allGameObjects(fromOthers, board)
+    MultipleGameObjects moveAll(Board board, Map<String,MultipleGameObjects> fromOthers) {
+        this.fromOthers = fromOthers
+        List<? extends SingleGameObject> allGameObjects = allGameObjects(fromOthers.values(), board)
         Set<SingleGameObject> collect = gameObjects.collect(this.&moveSingleObject.curry(board, allGameObjects)) as Set
         return new MultipleGameObjects(turn + 1, collect)
     }
 
-    private List<? extends SingleGameObject> allGameObjects(MultipleGameObjects fromOthers, Board board) {
+    private List<? extends SingleGameObject> allGameObjects(Collection<MultipleGameObjects> fromOthers, Board board) {
         List<? extends SingleGameObject> allGameObjects = []
         allGameObjects.addAll(gameObjects)
-        allGameObjects.addAll(fromOthers.gameObjects)
+        //allGameObjects.addAll(fromOthers*.gameObjects.flatten())
+        fromOthers.each {
+            allGameObjects.addAll(it.gameObjects)
+        }
         allGameObjects.addAll(board.walls)
         return allGameObjects
     }
 
-    private SingleGameObject moveSingleObject(Board board, List<SingleGameObject> allGameObjects, SingleGameObject gameObject) {
+    private SingleGameObject moveSingleObject(Board board, SingleGameObject gameObject) {
         MoveDirection direction = gameObject.move(board, this)
         Dimension newDirection = gameObject.location.to(direction)
 
-        SingleGameObject find = allGameObjects.find {
+        SingleGameObject find = allGameObjects(fromOthers.values(), board).find {
             it.location == newDirection
         }
         if (find) {
@@ -82,6 +87,7 @@ class MultipleGameObjects implements Serializable {
     Set<SingleGameObject> objectsAroundLocation(Dimension dimension) {
         //TODO: Location of returned objects should be relative
         //NOTE: This method is called frequently and should NOT create new objects
+        //NOTE2: at this point we must know all game objects including whether they are owned by this player or some other
         return gameObjects
     }
 }

@@ -6,15 +6,18 @@ import com.ordonteam.hackathon3.model.common.MultipleGameObjects
 import com.ordonteam.hackathon3.view.GroovyLock
 import groovy.transform.CompileStatic
 
+import java.util.concurrent.ConcurrentHashMap
+
 import static com.ordonteam.hackathon3.utils.ThreadUtil.startInteruptableThread
 
 @CompileStatic
 class GameController implements GameObjectsConsumer {
-    MultipleGameObjects gameObjects
+    private MultipleGameObjects gameObjects
+    private Map<String,MultipleGameObjects> otherPlayersObjects = new ConcurrentHashMap<>()
     private Thread thread
     private GameObjectsDispatcher dispatcher
     final GroovyLock lock = new GroovyLock()
-    Board board
+    private Board board
 
     void setDispather(GameObjectsDispatcher dispatcher) {
         this.dispatcher = dispatcher
@@ -22,7 +25,7 @@ class GameController implements GameObjectsConsumer {
 
     void moveAll() {
         lock.withLock {
-            gameObjects = gameObjects.moveAll(null, null)
+            gameObjects = gameObjects.moveAll(board, otherPlayersObjects)
         }
         dispatcher.fromGameController(gameObjects)
     }
@@ -43,7 +46,7 @@ class GameController implements GameObjectsConsumer {
 
     void newObjects(String participantId, MultipleGameObjects gameObjects) {
         lock.withLock {
-            this.gameObjects = gameObjects
+            this.otherPlayersObjects.put(participantId,gameObjects)
         }
     }
 
