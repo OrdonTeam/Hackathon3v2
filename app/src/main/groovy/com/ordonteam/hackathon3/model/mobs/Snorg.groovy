@@ -3,15 +3,15 @@ package com.ordonteam.hackathon3.model.mobs
 import android.graphics.Color
 import android.graphics.Paint
 import com.ordonteam.hackathon3.model.board.Board
-import com.ordonteam.hackathon3.model.common.BaseGameObject
+import com.ordonteam.hackathon3.model.common.SingleGameObject
 import com.ordonteam.hackathon3.model.common.Dimension
-import com.ordonteam.hackathon3.model.common.GameObjects
+import com.ordonteam.hackathon3.model.common.MultipleGameObjects
 import com.ordonteam.hackathon3.model.common.MoveDirection
 import com.ordonteam.hackathon3.view.utils.GamePaint
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class Snorg extends BaseGameObject implements Serializable {
+class Snorg extends SingleGameObject implements Serializable {
     private static final long serialVersionUID = 42L
 
     Snorg(Dimension location) {
@@ -19,12 +19,12 @@ class Snorg extends BaseGameObject implements Serializable {
     }
 
     @Override
-    MoveDirection move(Board board, GameObjects gameObjects) {
+    MoveDirection move(Board board, MultipleGameObjects gameObjects) {
         return MoveDirection.RIGHT
     }
 
     @Override
-    BaseGameObject withNewLocation(MoveDirection moveDirection) {
+    SingleGameObject withNewLocation(MoveDirection moveDirection) {
         return new Snorg(location.to(moveDirection))
     }
 

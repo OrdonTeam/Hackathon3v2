@@ -2,7 +2,7 @@ package com.ordonteam.hackathon3.controller
 
 import android.util.Log
 import com.ordonteam.hackathon3.model.board.Board
-import com.ordonteam.hackathon3.model.common.GameObjects
+import com.ordonteam.hackathon3.model.common.MultipleGameObjects
 import com.ordonteam.hackathon3.view.GroovyLock
 import groovy.transform.CompileStatic
 
@@ -10,7 +10,7 @@ import static com.ordonteam.hackathon3.utils.ThreadUtil.startInteruptableThread
 
 @CompileStatic
 class GameController implements GameObjectsConsumer {
-    GameObjects gameObjects
+    MultipleGameObjects gameObjects
     private Thread thread
     private GameObjectsDispatcher dispatcher
     final GroovyLock lock = new GroovyLock()
@@ -41,7 +41,7 @@ class GameController implements GameObjectsConsumer {
         thread.interrupt()
     }
 
-    void newObjects(String participantId, GameObjects gameObjects) {
+    void newObjects(String participantId, MultipleGameObjects gameObjects) {
         lock.withLock {
             this.gameObjects = gameObjects
         }

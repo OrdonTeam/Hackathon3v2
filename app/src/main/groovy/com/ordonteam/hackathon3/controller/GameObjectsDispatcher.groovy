@@ -3,7 +3,7 @@ package com.ordonteam.hackathon3.controller
 import android.util.Log
 import com.ordonteam.hackathon3.model.board.Board
 import com.ordonteam.hackathon3.model.board.BoardChooser
-import com.ordonteam.hackathon3.model.common.GameObjects
+import com.ordonteam.hackathon3.model.common.MultipleGameObjects
 import com.ordonteam.hackathon3.view.GameViewController
 import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic
@@ -29,7 +29,7 @@ class GameObjectsDispatcher {
         networkController.newBoard(board)
     }
 
-    void fromGameController(GameObjects gameObjects) {
+    void fromGameController(MultipleGameObjects gameObjects) {
         gameViewController.newObjects(myParticipantId, gameObjects)
         networkController.newObjects(myParticipantId, gameObjects)
     }
@@ -49,8 +49,8 @@ class GameObjectsDispatcher {
         gameViewController.newBoard(board)
     }
 
-    void fromNetwork(String participantId, GameObjects gameObjects) {
-        Log.e('onRealTimeMessageReceived ->gameObjects', 'new GameObjects')
+    void fromNetwork(String participantId, MultipleGameObjects gameObjects) {
+        Log.e('onRealTimeMessageReceived ->gameObjects', 'new MultipleGameObjects')
         gameController.newObjects(participantId, gameObjects)
         gameViewController.newObjects(participantId, gameObjects)
     }

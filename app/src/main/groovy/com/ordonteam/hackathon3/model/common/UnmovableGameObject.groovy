@@ -4,18 +4,18 @@ import com.ordonteam.hackathon3.model.board.Board
 import groovy.transform.CompileStatic
 
 @CompileStatic
-abstract class UnmovableGameObject extends BaseGameObject {
+abstract class UnmovableGameObject extends SingleGameObject {
     UnmovableGameObject(Dimension location) {
         super(location)
     }
 
     @Override
-    final MoveDirection move(Board board, GameObjects gameObjects) {
+    final MoveDirection move(Board board, MultipleGameObjects gameObjects) {
         return MoveDirection.NOWHERE
     }
 
     @Override
-    final BaseGameObject withNewLocation(MoveDirection moveDirection) {
+    final SingleGameObject withNewLocation(MoveDirection moveDirection) {
         if (moveDirection != MoveDirection.NOWHERE)
             throw new UnmovableGameObjectException()
         return this

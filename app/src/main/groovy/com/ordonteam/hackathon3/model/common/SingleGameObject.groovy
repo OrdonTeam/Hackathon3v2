@@ -9,22 +9,22 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 @Canonical
-abstract class BaseGameObject implements GameDrawable, Serializable {
+abstract class SingleGameObject implements GameDrawable, Serializable {
     private static final long serialVersionUID = 42L
 
     final Dimension location
 
-    BaseGameObject(Dimension location) {
+    SingleGameObject(Dimension location) {
         this.location = location
     }
 
-    abstract MoveDirection move(Board board, GameObjects gameObjects)
+    abstract MoveDirection move(Board board, MultipleGameObjects gameObjects)
 
     void draw(ScaledCanvas canvas) {
         canvas.drawRectangle(location, paint)
     }
 
-    abstract BaseGameObject withNewLocation(MoveDirection moveDirection)
+    abstract SingleGameObject withNewLocation(MoveDirection moveDirection)
 
     abstract Paint getPaint()
 }

@@ -14,23 +14,23 @@ import groovy.transform.CompileStatic
 import static com.ordonteam.hackathon3.model.common.Dimension.xy
 
 @CompileStatic
-class GameObjects implements Serializable {
+class MultipleGameObjects implements Serializable {
     private static final long serialVersionUID = 42L
 
     final int turn
-    final Set<BaseGameObject> gameObjects
+    final Set<SingleGameObject> gameObjects
 
-    GameObjects(Set<BaseGameObject> gameObjects) {
+    MultipleGameObjects(Set<SingleGameObject> gameObjects) {
         this(0, gameObjects)
     }
 
-    GameObjects(int turn, Set<BaseGameObject> gameObjects) {
+    MultipleGameObjects(int turn, Set<SingleGameObject> gameObjects) {
         this.turn = turn
         this.gameObjects = gameObjects
     }
 
-    static GameObjects generateObjects(Board board, PlayerPadView playerPadView) {
-        new GameObjects([
+    static MultipleGameObjects generateObjects(Board board, PlayerPadView playerPadView) {
+        new MultipleGameObjects([
                 new Zugar(xy(1, 1)), new Snorg(xy(2, 2)), new Fluppet(xy(3, 3)), new Toxifera(xy(4, 5)),
                 new Wall(xy(6, 6)), new SelfUserBot(xy(7, 7), playerPadView)
         ] as Set)
@@ -42,29 +42,29 @@ class GameObjects implements Serializable {
         }
     }
 
-    void add(BaseGameObject object) {
+    void add(SingleGameObject object) {
         gameObjects.add(object)
     }
 
-    GameObjects moveAll(Board board, GameObjects fromOthers) {
-        List<? extends BaseGameObject> allGameObjects = allGameObjects(fromOthers, board)
-        Set<BaseGameObject> collect = gameObjects.collect(this.&moveSingleObject.curry(board, allGameObjects)) as Set
-        return new GameObjects(turn + 1, collect)
+    MultipleGameObjects moveAll(Board board, MultipleGameObjects fromOthers) {
+        List<? extends SingleGameObject> allGameObjects = allGameObjects(fromOthers, board)
+        Set<SingleGameObject> collect = gameObjects.collect(this.&moveSingleObject.curry(board, allGameObjects)) as Set
+        return new MultipleGameObjects(turn + 1, collect)
     }
 
-    private List<? extends BaseGameObject> allGameObjects(GameObjects fromOthers, Board board) {
-        List<? extends BaseGameObject> allGameObjects = []
+    private List<? extends SingleGameObject> allGameObjects(MultipleGameObjects fromOthers, Board board) {
+        List<? extends SingleGameObject> allGameObjects = []
         allGameObjects.addAll(gameObjects)
         allGameObjects.addAll(fromOthers.gameObjects)
         allGameObjects.addAll(board.walls)
         return allGameObjects
     }
 
-    private BaseGameObject moveSingleObject(Board board, List<BaseGameObject> allGameObjects, BaseGameObject gameObject) {
+    private SingleGameObject moveSingleObject(Board board, List<SingleGameObject> allGameObjects, SingleGameObject gameObject) {
         MoveDirection direction = gameObject.move(board, this)
         Dimension newDirection = gameObject.location.to(direction)
 
-        BaseGameObject find = allGameObjects.find {
+        SingleGameObject find = allGameObjects.find {
             it.location == newDirection
         }
         if (find) {
@@ -74,12 +74,12 @@ class GameObjects implements Serializable {
         return gameObject.withNewLocation(direction)
     }
 
-    void triggerCollision(BaseGameObject first, BaseGameObject second) {
+    void triggerCollision(SingleGameObject first, SingleGameObject second) {
         //first.collide(second)
         //second.collide(first)
     }
 
-    Set<BaseGameObject> objectsAroundLocation(Dimension dimension) {
+    Set<SingleGameObject> objectsAroundLocation(Dimension dimension) {
         //TODO: Location of returned objects should be relative
         //NOTE: This method is called frequently and should NOT create new objects
         return gameObjects
