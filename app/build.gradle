@@ -26,8 +26,6 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidSpockRunner"
     }
     signingConfigs {
         debug {
@@ -52,12 +50,20 @@ android {
     packagingOptions {
         exclude 'LICENSE.txt'
     }
+
+    productFlavors {
+        forCodeAnalyses {
+            minSdkVersion 21
+        }
+        normal {
+            testInstrumentationRunner "android.support.test.runner.AndroidSpockRunner"
+        }
+    }
     lintOptions {
         abortOnError true
-        // use this line to check all rules except those listed
         disable 'InvalidPackage'
-        disable 'NewApi'
     }
+
 }
 
 dependencies {
@@ -93,7 +99,6 @@ task codenarc(type: CodeNarc) {
 //tasks connectedAndroidTest.dependsOn codenarc
 //task connectedAndroidTest.dependsOn codenarc
 
-task fullTest
-fullTest.dependsOn "codenarc"
-fullTest.dependsOn "check"
-fullTest.dependsOn "connectedAndroidTest"
+task codeAnalysesForCodeAnalyses
+codeAnalysesForCodeAnalyses.dependsOn "codenarc"
+codeAnalysesForCodeAnalyses.dependsOn "lintForCodeAnalysesDebug"
