@@ -3,7 +3,13 @@ package com.ordonteam
 import com.ordonteam.hackathon3.model.common.MoveDirection
 import spock.lang.Specification
 
-import static com.ordonteam.hackathon3.model.common.MoveDirection.*
+import static com.ordonteam.hackathon3.model.common.MoveDirection.UP_LEFT
+import static com.ordonteam.hackathon3.model.common.MoveDirection.UP_RIGHT
+import static com.ordonteam.hackathon3.model.common.MoveDirection.UP
+import static com.ordonteam.hackathon3.model.common.MoveDirection.DOWN
+import static com.ordonteam.hackathon3.model.common.MoveDirection.DOWN_RIGHT
+import static com.ordonteam.hackathon3.model.common.MoveDirection.DOWN_LEFT
+import static com.ordonteam.hackathon3.model.common.MoveDirection.NOWHERE
 
 class MoveDirectionSpec extends Specification {
 
