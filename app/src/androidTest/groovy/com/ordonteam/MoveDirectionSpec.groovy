@@ -10,6 +10,8 @@ import static com.ordonteam.hackathon3.model.common.MoveDirection.DOWN
 import static com.ordonteam.hackathon3.model.common.MoveDirection.DOWN_RIGHT
 import static com.ordonteam.hackathon3.model.common.MoveDirection.DOWN_LEFT
 import static com.ordonteam.hackathon3.model.common.MoveDirection.NOWHERE
+import static com.ordonteam.hackathon3.model.common.MoveDirection.RIGHT
+import static com.ordonteam.hackathon3.model.common.MoveDirection.LEFT
 
 class MoveDirectionSpec extends Specification {
 
