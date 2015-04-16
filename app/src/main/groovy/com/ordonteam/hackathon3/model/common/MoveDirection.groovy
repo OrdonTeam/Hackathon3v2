@@ -21,4 +21,8 @@ enum MoveDirection {
         this.x = x
         this.y = y
     }
+
+    MoveDirection invert() {
+        return MoveDirection.values().find{ it.x == x * -1 && it.y == y*-1 }
+    }
 }
