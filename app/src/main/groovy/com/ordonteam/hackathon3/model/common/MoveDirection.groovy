@@ -23,6 +23,6 @@ enum MoveDirection {
     }
 
     MoveDirection invert() {
-        return MoveDirection.values().find{ it.x == x * -1 && it.y == y * -1 }
+        return MoveDirection.values().find{ it.x == -x && it.y == -y }
     }
 }
