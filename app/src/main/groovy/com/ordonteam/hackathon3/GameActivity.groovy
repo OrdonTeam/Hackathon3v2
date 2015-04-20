@@ -14,7 +14,7 @@ import com.ordonteam.hackathon3.view.PlayerPadView
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class GameActivity extends RoomActivity {
+class GameActivity extends SenderActivity {
 
     @InjectView(R.id.game_view)
     GameViewController gameViewController
@@ -29,7 +29,7 @@ class GameActivity extends RoomActivity {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.game_activity)
         SwissKnife.inject(this)
-        dispatcher = new GameObjectsDispatcher(gameViewController,this)
+        dispatcher = new GameObjectsDispatcher(gameViewController)
     }
 
     @Override

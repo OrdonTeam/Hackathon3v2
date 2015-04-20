@@ -13,11 +13,10 @@ import com.google.android.gms.games.multiplayer.realtime.Room
 import com.google.android.gms.games.multiplayer.realtime.RoomConfig
 import com.google.android.gms.games.multiplayer.realtime.RoomStatusUpdateListener
 import com.google.android.gms.games.multiplayer.realtime.RoomUpdateListener
-import com.ordonteam.hackathon3.controller.MessageSender
 import groovy.transform.CompileStatic
 
 @CompileStatic
-abstract class RoomActivity extends LoginActivity implements RoomUpdateListener, RealTimeMessageReceivedListener, MessageSender, RoomStatusUpdateListener {
+abstract class RoomActivity extends LoginActivity implements RoomUpdateListener, RealTimeMessageReceivedListener, RoomStatusUpdateListener {
 
     public static final int RC_WAITING_ROOM = 9007
     public static final String ORDONTEAM_TAG = 'OrdonTeam'

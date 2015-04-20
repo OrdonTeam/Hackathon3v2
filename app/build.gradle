@@ -67,6 +67,7 @@ android {
 }
 
 dependencies {
+    compile 'de.greenrobot:eventbus:2.4.0'
     compile 'org.codehaus.groovy:groovy:2.4.1:grooid'
     androidTestCompile 'com.squareup.dagger:dagger:1.2.2'
     //Don't know why it doesn't work without it

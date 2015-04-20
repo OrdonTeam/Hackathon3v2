@@ -16,9 +16,9 @@ class GameObjectsDispatcher {
     NetworkController networkController
     Board board // Can be null but who cares
 
-    GameObjectsDispatcher( GameViewController gameViewController, MessageSender sender) {
+    GameObjectsDispatcher(GameViewController gameViewController) {
         this.gameViewController = gameViewController
-        this.networkController = new NetworkController(sender)
+        this.networkController = new NetworkController()
     }
 
     void fromGameController(Board newBoard) {
