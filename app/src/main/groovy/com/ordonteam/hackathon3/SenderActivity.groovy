@@ -1,25 +1,26 @@
 package com.ordonteam.hackathon3
 
+import com.ordonteam.hackathon3.event.Bus
 import com.ordonteam.hackathon3.event.SendBytesEvent
 import de.greenrobot.event.EventBus
 import groovy.transform.CompileStatic
 
 @CompileStatic
-abstract class SenderActivity extends RoomActivity{
+abstract class SenderActivity extends RoomActivity implements Bus.Passenger {
     @Override
     protected void onResume() {
         super.onResume()
-        EventBus.default.register(this)
+        Bus.getIn(this)
     }
 
     @Override
     protected void onPause() {
         super.onPause()
-        EventBus.default.unregister(this)
+        Bus.getOut(this)
     }
 
     @SuppressWarnings('unused')
-    void onEvent(SendBytesEvent event){
+    void onEvent(SendBytesEvent event) {
         sendUnreliableMessageToOthers(event.bytes)
     }
 }

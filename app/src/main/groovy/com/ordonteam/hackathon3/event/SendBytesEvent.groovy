@@ -5,6 +5,6 @@ import groovy.transform.TupleConstructor
 
 @CompileStatic
 @TupleConstructor
-class SendBytesEvent {
+class SendBytesEvent implements Bus.Event{
     final byte[] bytes
 }
