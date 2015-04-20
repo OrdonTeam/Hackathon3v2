@@ -6,6 +6,8 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.games.Games
 import com.google.android.gms.plus.Plus
+import com.ordonteam.hackathon3.google.GoogleApiClientWrapper
+import com.ordonteam.hackathon3.google.GoogleApiClientWrapperProvider
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -13,32 +15,30 @@ abstract class LoginActivity extends Activity implements GoogleApiClient.Connect
 
     private static final int RC_SIGN_IN = 9001
 
-    GoogleApiClient client
+    GoogleApiClientWrapperProvider googleApiClientWrapperProvider = new GoogleApiClientWrapperProvider()
+    GoogleApiClientWrapper googleApiClientWrapper
 
     @Override
     protected void onStart() {
         super.onStart()
-        client = client ?: new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
-                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
-                .build()
-        if (!client.isConnected() && !client.isConnecting()) {
-            client.connect()
+        if(!googleApiClientWrapper){
+            googleApiClientWrapper = googleApiClientWrapperProvider.provide(this)
+        }
+        if (!googleApiClientWrapper.isConnected() && !googleApiClientWrapper.isConnecting()) {
+            googleApiClientWrapper.connect()
         }
     }
 
     @Override
     protected void onStop() {
         super.onStop()
-        if (client?.isConnected())
-            client.disconnect()
+        if (googleApiClientWrapper?.isConnected())
+            googleApiClientWrapper.disconnect()
     }
 
     @Override
     void onConnectionSuspended(int i) {
-        client.connect()
+        googleApiClientWrapper.connect()
     }
 
     @Override
@@ -56,7 +56,7 @@ abstract class LoginActivity extends Activity implements GoogleApiClient.Connect
     protected void onActivityResult(int requestCode, int responseCode, Intent data) {
         if (requestCode == RC_SIGN_IN) {
             if (responseCode == RESULT_OK) {
-                client.connect()
+                googleApiClientWrapper.connect()
             } else {
                 onNotSignedIn(responseCode)
             }

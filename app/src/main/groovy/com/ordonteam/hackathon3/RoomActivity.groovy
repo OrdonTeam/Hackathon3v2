@@ -26,7 +26,7 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
     void onConnected(Bundle bundle) {
         Bundle am = RoomConfig.createAutoMatchCriteria(1, 1, 0)
         RoomConfig roomConfig = RoomConfig.builder(this).setMessageReceivedListener(this).setRoomStatusUpdateListener(this).setAutoMatchCriteria(am).build()
-        Games.RealTimeMultiplayer.create(client, roomConfig)
+        googleApiClientWrapper.createRoom(roomConfig)
     }
 
     @Override
@@ -47,7 +47,7 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
             onRoomCreationFailure(statusCode)
         } else {
             roomId = room.roomId
-            Intent i = Games.RealTimeMultiplayer.getWaitingRoomIntent(client, room, Integer.MAX_VALUE)
+            Intent i = googleApiClientWrapper.getWaitingRoomIntent(room)
             startActivityForResult(i, RC_WAITING_ROOM)
         }
     }
@@ -56,7 +56,7 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
         Log.i(ORDONTEAM_TAG, "sendUnreliableMessageToOthers with ${bytes.length} bytes")
         if (bytes.length > Multiplayer.MAX_UNRELIABLE_MESSAGE_LEN)
             throw new RuntimeException('Message to long to send')
-        int result = Games.RealTimeMultiplayer.sendUnreliableMessageToOthers(client, bytes, roomId)
+        int result = googleApiClientWrapper.sendUnreliableMessageToOthers(bytes, roomId)
         if (result == RealTimeMultiplayer.REAL_TIME_MESSAGE_FAILED)
             throw new RuntimeException('Error while sending message')
         Log.i(ORDONTEAM_TAG, 'sendUnreliableMessageToOthers result OK')
@@ -66,9 +66,9 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
     protected void onActivityResult(int requestCode, int responseCode, Intent data) {
         if (requestCode == RC_WAITING_ROOM) {
             if (responseCode == RESULT_OK) {
-                startGame(Games.Players.getCurrentPlayerId(client))
+                startGame(googleApiClientWrapper.getCurrentPlayerId())
             } else if (responseCode in [RESULT_CANCELED, GamesActivityResultCodes.RESULT_LEFT_ROOM]) {
-                Games.RealTimeMultiplayer.leave(client, this, roomId)
+                googleApiClientWrapper.leave(this,roomId)
                 // java.lang.IllegalStateException: GoogleApiClient must be connected. when exiting from waiting room
             }
         } else {
