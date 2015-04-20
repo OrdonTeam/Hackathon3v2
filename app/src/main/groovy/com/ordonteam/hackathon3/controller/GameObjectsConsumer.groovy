@@ -7,7 +7,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 interface GameObjectsConsumer {
 
-    void newObjects(String participantId, MultipleGameObjects gameObjects)
+    void newObjects(PlayerIdentifier playerIdentifier, MultipleGameObjects gameObjects)
 
     void newBoard(Board board)
 

@@ -8,12 +8,18 @@ import static com.ordonteam.hackathon3.model.common.Dimension.xy
 @CompileStatic
 final class BoardGenerator {
 
-    Board generateBoard(Dimension size) {
-        Board board = new Board(size: size)
+    private static Board generatedBoard
+
+    static Board generateBoard(Dimension size) {
+        Board generatedBoard = new Board(size: size)
         5.times {
-            board.walls.add(new Wall(xy(new Random().nextInt(size.x), new Random().nextInt(size.y))))
+            generatedBoard.walls.add(new Wall(xy(new Random().nextInt(size.x), new Random().nextInt(size.y))))
         }
-        board.hashCode = new Random().nextLong()
-        return board
+        generatedBoard.hashCode = new Random().nextLong()
+        return generatedBoard
+    }
+
+    static Board forDimension(Dimension dimension) {
+        return generatedBoard ?: generateBoard(dimension)
     }
 }

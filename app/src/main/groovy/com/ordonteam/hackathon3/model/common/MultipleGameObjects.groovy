@@ -1,5 +1,6 @@
 package com.ordonteam.hackathon3.model.common
 
+import com.ordonteam.hackathon3.controller.PlayerIdentifier
 import com.ordonteam.hackathon3.model.board.Board
 import com.ordonteam.hackathon3.model.board.Wall
 import com.ordonteam.hackathon3.model.mobs.Fluppet
@@ -19,7 +20,7 @@ class MultipleGameObjects implements Serializable {
 
     final int turn
     final Set<SingleGameObject> gameObjects
-    Map<String,MultipleGameObjects> fromOthers
+    Map<PlayerIdentifier,MultipleGameObjects> fromOthers
 
     MultipleGameObjects(Set<SingleGameObject> gameObjects) {
         this(0, gameObjects)
@@ -47,7 +48,7 @@ class MultipleGameObjects implements Serializable {
         gameObjects.add(object)
     }
 
-    MultipleGameObjects moveAll(Board board, Map<String,MultipleGameObjects> fromOthers) {
+    MultipleGameObjects moveAll(Board board, Map<PlayerIdentifier,MultipleGameObjects> fromOthers) {
         this.fromOthers = fromOthers
         List<? extends SingleGameObject> allGameObjects = allGameObjects(fromOthers.values(), board)
         Set<SingleGameObject> collect = gameObjects.collect(this.&moveSingleObject.curry(board, allGameObjects)) as Set

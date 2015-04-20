@@ -13,12 +13,10 @@ class GameObjectsDispatcher {
 
     GameObjectsConsumer gameController = new GameController()
     GameObjectsConsumer gameViewController
-    GameObjectsConsumer networkController
+    NetworkController networkController
     Board board // Can be null but who cares
-    final String myParticipantId
 
-    GameObjectsDispatcher(String myParticipantId, GameViewController gameViewController, MessageSender sender) {
-        this.myParticipantId = myParticipantId
+    GameObjectsDispatcher( GameViewController gameViewController, MessageSender sender) {
         this.gameViewController = gameViewController
         this.networkController = new NetworkController(sender)
     }
@@ -30,8 +28,8 @@ class GameObjectsDispatcher {
     }
 
     void fromGameController(MultipleGameObjects gameObjects) {
-        gameViewController.newObjects(myParticipantId, gameObjects)
-        networkController.newObjects(myParticipantId, gameObjects)
+        gameViewController.newObjects(PlayerIdentifier.my(), gameObjects)
+        networkController.newObjects(gameObjects)
     }
 
     @CompileDynamic
@@ -51,7 +49,7 @@ class GameObjectsDispatcher {
 
     void fromNetwork(String participantId, MultipleGameObjects gameObjects) {
         Log.e('onRealTimeMessageReceived ->gameObjects', 'new MultipleGameObjects')
-        gameController.newObjects(participantId, gameObjects)
-        gameViewController.newObjects(participantId, gameObjects)
+        gameController.newObjects(PlayerIdentifier.forParticipantId(participantId), gameObjects)
+        gameViewController.newObjects(PlayerIdentifier.forParticipantId(participantId), gameObjects)
     }
 }

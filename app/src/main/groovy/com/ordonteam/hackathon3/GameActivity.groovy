@@ -28,15 +28,13 @@ class GameActivity extends RoomActivity {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.game_activity)
         SwissKnife.inject(this)
+        dispatcher = new GameObjectsDispatcher(gameViewController,this)
     }
 
     @Override
-    void startGame(String myParticipantId) {
-        dispatcher = new GameObjectsDispatcher(myParticipantId, gameViewController,this)
-        def board = new BoardGenerator().generateBoard(Dimension.xy(BOARD_SIZE, BOARD_SIZE))
-        Thread.sleep(1000) //I observed that sometimes player received a message before he invoke startGame metod
-        // so we need to wait for all, I wonder if we should send some kind of 'ready' message to inform others that all players are ready,
-        // because this one second can be not enough
+    void onP2PConnected(String s) {
+        super.onP2PConnected(s)
+        def board = BoardGenerator.forDimension(Dimension.xy(BOARD_SIZE, BOARD_SIZE))
         dispatcher.fromGameController(board)
     }
 
@@ -44,5 +42,10 @@ class GameActivity extends RoomActivity {
     void onRealTimeMessageReceived(RealTimeMessage realTimeMessage) {
         Log.e('onRealTimeMessageReceived', "${realTimeMessage.messageData.length}")
         dispatcher.fromNetwork(realTimeMessage.senderParticipantId, realTimeMessage.messageData)
+    }
+
+    @Override
+    void startGame(String myParticipantId) {
+        Log.e('StartGame invoked',"myParticipantId: ${myParticipantId}")
     }
 }

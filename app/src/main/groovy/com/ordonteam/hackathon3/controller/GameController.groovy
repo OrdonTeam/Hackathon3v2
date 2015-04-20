@@ -11,9 +11,9 @@ import java.util.concurrent.ConcurrentHashMap
 import static com.ordonteam.hackathon3.utils.ThreadUtil.startInteruptableThread
 
 @CompileStatic
-class GameController implements GameObjectsConsumer {
+class GameController implements GameObjectsConsumer{
     private MultipleGameObjects gameObjects
-    private Map<String,MultipleGameObjects> otherPlayersObjects = new ConcurrentHashMap<>()
+    private Map<PlayerIdentifier,MultipleGameObjects> otherPlayersObjects = new ConcurrentHashMap<>()
     private Thread thread
     private GameObjectsDispatcher dispatcher
     final GroovyLock lock = new GroovyLock()
@@ -44,7 +44,8 @@ class GameController implements GameObjectsConsumer {
         thread.interrupt()
     }
 
-    void newObjects(String participantId, MultipleGameObjects gameObjects) {
+    @Override
+    void newObjects(PlayerIdentifier participantId, MultipleGameObjects gameObjects) {
         lock.withLock {
             this.otherPlayersObjects.put(participantId,gameObjects)
         }

@@ -4,6 +4,7 @@ import android.graphics.Canvas
 import android.util.Log
 import android.widget.LinearLayout
 import com.ordonteam.hackathon3.controller.GameObjectsConsumer
+import com.ordonteam.hackathon3.controller.PlayerIdentifier
 import com.ordonteam.hackathon3.model.board.Board
 import com.ordonteam.hackathon3.model.common.MultipleGameObjects
 import com.ordonteam.hackathon3.view.common.Scale
@@ -16,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap
 @CompileStatic
 @InheritConstructors
 class GameViewController extends LinearLayout implements GameObjectsConsumer {
-    private Map<String, MultipleGameObjects> gameObjectsMap = new ConcurrentHashMap<>()
+    private Map<PlayerIdentifier, MultipleGameObjects> gameObjectsMap = new ConcurrentHashMap<>()
     Board board
 
     @Override
@@ -25,7 +26,7 @@ class GameViewController extends LinearLayout implements GameObjectsConsumer {
         postInvalidate()
     }
 
-    void newObjects(String participantId, MultipleGameObjects gameObjects) {
+    void newObjects(PlayerIdentifier participantId, MultipleGameObjects gameObjects) {
         gameObjectsMap.put(participantId, gameObjects)
         postInvalidate()
     }

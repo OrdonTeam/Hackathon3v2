@@ -5,7 +5,7 @@ import com.ordonteam.hackathon3.model.common.MultipleGameObjects
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class NetworkController implements GameObjectsConsumer {
+class NetworkController {
 
     MessageSender sender
 
@@ -13,12 +13,10 @@ class NetworkController implements GameObjectsConsumer {
         this.sender = sender
     }
 
-    @Override
-    void newObjects(String participantId, MultipleGameObjects gameObjects) {
+    void newObjects(MultipleGameObjects gameObjects) {
         sender.sendUnreliableMessageToOthers(persist(gameObjects))
     }
 
-    @Override
     void newBoard(Board board) {
         sender.sendUnreliableMessageToOthers(persist(board))
     }
