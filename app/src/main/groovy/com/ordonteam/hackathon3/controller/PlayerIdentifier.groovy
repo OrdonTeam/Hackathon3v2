@@ -19,7 +19,9 @@ class PlayerIdentifier {
 
     static PlayerIdentifier forParticipantId(String participantId) {
         if(!cache.containsKey(participantId) ){
-            return cache.put(participantId, new PlayerIdentifier(participantId))
+            PlayerIdentifier identifier = new PlayerIdentifier(participantId)
+            cache.put(participantId,identifier)
+            return identifier
         }
         return cache.get(participantId)
     }
