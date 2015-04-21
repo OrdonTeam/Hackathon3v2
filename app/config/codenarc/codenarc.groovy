@@ -26,15 +26,19 @@ ruleset {
         VariableName{
             finalRegex = '^[a-z][a-zA-Z0-9]*$'
         }
+        FactoryMethodName(enabled: false)
     }
 
     ruleset('rulesets/concurrency.xml')
 
-    ruleset('rulesets/convention.xml')
+    ruleset('rulesets/convention.xml'){
+        CouldBeElvis(enabled: false)
+    }
 
     ruleset('rulesets/design.xml'){
         AbstractClassWithPublicConstructor(enabled: false)
         AbstractClassWithoutAbstractMethod(enabled: false)
+        BuilderMethodWithSideEffects(enabled: false)
     }
 
     ruleset('rulesets/dry.xml'){
