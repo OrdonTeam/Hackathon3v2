@@ -7,7 +7,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(includes =, overrides = true, library = true)
+@Module(overrides = true, library = true)
 @SuppressWarnings("unused")
 public class BaseTestModule {
     @Provides
