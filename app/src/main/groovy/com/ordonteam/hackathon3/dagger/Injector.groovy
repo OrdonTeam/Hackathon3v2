@@ -1,4 +1,4 @@
-package com.ordonteam.hackathon3.dagger;
+package com.ordonteam.hackathon3.dagger
 
 import android.content.Context
 import dagger.ObjectGraph

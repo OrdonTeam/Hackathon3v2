@@ -2,7 +2,6 @@ package com.ordonteam.hackathon3
 
 import com.ordonteam.hackathon3.event.Bus
 import com.ordonteam.hackathon3.event.SendBytesEvent
-import de.greenrobot.event.EventBus
 import groovy.transform.CompileStatic
 
 @CompileStatic
