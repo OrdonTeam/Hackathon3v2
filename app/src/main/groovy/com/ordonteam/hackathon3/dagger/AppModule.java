@@ -1,27 +1,25 @@
 package com.ordonteam.hackathon3.dagger;
 
-import android.content.Context
+import android.content.Context;
+
 import dagger.Module;
 import dagger.Provides;
 
 @Module(
-        includes = [
-                GoogleModule,
-        ],
-        library = true
-)
+        includes = {
+                GoogleModule.class,
+        },
+        library = true)
 @SuppressWarnings("unused")
 public final class AppModule {
-
-    private final Context context;
-
     public AppModule(Context context) {
         this.context = context.getApplicationContext();
     }
 
     @Provides
-    Context provideContext() {
+    public Context provideContext() {
         return context;
     }
 
+    private final Context context;
 }

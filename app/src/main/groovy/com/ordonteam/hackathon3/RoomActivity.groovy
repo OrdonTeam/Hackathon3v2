@@ -66,7 +66,7 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
     protected void onActivityResult(int requestCode, int responseCode, Intent data) {
         if (requestCode == RC_WAITING_ROOM) {
             if (responseCode == RESULT_OK) {
-                startGame(googleApiClientWrapper.getCurrentPlayerId())
+                startGame(googleApiClientWrapper.currentPlayerId)
             } else if (responseCode in [RESULT_CANCELED, GamesActivityResultCodes.RESULT_LEFT_ROOM]) {
                 googleApiClientWrapper.leave(this,roomId)
                 // java.lang.IllegalStateException: GoogleApiClient must be connected. when exiting from waiting room

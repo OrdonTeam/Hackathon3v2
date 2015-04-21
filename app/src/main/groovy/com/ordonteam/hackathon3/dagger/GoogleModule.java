@@ -8,19 +8,18 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(
-        complete = false,
-        injects = [
-                GameActivity,
-        ],
-        library = true
-)
+@Module(complete = false,
+        injects = {
+                GameActivity.class
+        },
+        library = true)
 @SuppressWarnings("unused")
 public final class GoogleModule {
 
     @Provides
     @Singleton
-    GoogleApiClientWrapperProvider provideDoctorsService() {
+    public GoogleApiClientWrapperProvider provideDoctorsService() {
         return new GoogleApiClientWrapperProvider();
     }
+
 }

@@ -2,21 +2,30 @@ package com.ordonteam.hackathon3
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Bundle
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.games.Games
-import com.google.android.gms.plus.Plus
+import com.ordonteam.hackathon3.dagger.Injector
 import com.ordonteam.hackathon3.google.GoogleApiClientWrapper
 import com.ordonteam.hackathon3.google.GoogleApiClientWrapperProvider
 import groovy.transform.CompileStatic
+
+import javax.inject.Inject
 
 @CompileStatic
 abstract class LoginActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private static final int RC_SIGN_IN = 9001
 
-    GoogleApiClientWrapperProvider googleApiClientWrapperProvider = new GoogleApiClientWrapperProvider()
+    @Inject
+    protected GoogleApiClientWrapperProvider googleApiClientWrapperProvider
     GoogleApiClientWrapper googleApiClientWrapper
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState)
+        Injector.inject(this, this)
+    }
 
     @Override
     protected void onStart() {
