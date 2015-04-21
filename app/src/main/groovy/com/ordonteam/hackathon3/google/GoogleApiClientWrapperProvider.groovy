@@ -8,8 +8,8 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class GoogleApiClientWrapperProvider {
-    GoogleApiClientWrapper provide(LoginActivity loginActivity) {
-        return new GoogleApiClientWrapper(new GoogleApiClient.Builder(loginActivity)
+    GoogleApiClientWrapperImpl provide(LoginActivity loginActivity) {
+        return new GoogleApiClientWrapperImpl(new GoogleApiClient.Builder(loginActivity)
                 .addConnectionCallbacks(loginActivity)
                 .addOnConnectionFailedListener(loginActivity)
                 .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
