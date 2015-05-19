@@ -10,6 +10,7 @@ ruleset {
 
     ruleset('rulesets/imports.xml'){
         MisorderedStaticImports(enabled: false)
+        NoWildcardImports(enabled: false)
     }
 
     ruleset('rulesets/naming.xml'){
@@ -65,6 +66,7 @@ ruleset {
         SpaceAroundClosureArrow(enabled: false)
         SpaceBeforeClosingBrace(enabled: false)
         SpaceBeforeOpeningBrace(enabled: false)
+        FileEndsWithoutNewline(enabled: false)
     }
 
     ruleset('rulesets/exceptions.xml') {
@@ -75,6 +77,7 @@ ruleset {
 
     ruleset('rulesets/groovyism.xml'){
         ClosureAsLastMethodParameter(enabled: false)
+        GetterMethodCouldBeProperty(enabled: false)
     }
 
     ruleset('rulesets/junit.xml'){

@@ -8,7 +8,7 @@ import com.ordonteam.hackathon3.LoginActivity
 import com.ordonteam.hackathon3.google.GoogleApiClientWrapper
 
 final class GoogleApiClientWrapperStub implements GoogleApiClientWrapper {
-    private LoginActivity loginActivity
+    private final LoginActivity loginActivity
 
     GoogleApiClientWrapperStub(LoginActivity loginActivity) {
         this.loginActivity = loginActivity
