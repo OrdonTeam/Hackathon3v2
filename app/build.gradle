@@ -1,7 +1,6 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url 'http://download.crashlytics.com/maven' }
     }
 
     dependencies {
@@ -10,7 +9,7 @@ buildscript {
 }
 
 repositories {
-    maven { url 'http://download.crashlytics.com/maven' }
+    jcenter()
 }
 
 apply plugin: 'com.android.application'
@@ -64,18 +63,22 @@ android {
         disable 'InvalidPackage'
     }
 
+    sourceSets.main {
+        java.srcDirs = ['src/main/groovy', 'gen']
+    }
 }
+
 
 dependencies {
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'org.codehaus.groovy:groovy:2.4.1:grooid'
+
     compile 'com.squareup.dagger:dagger:1.2.2'
+    provided "com.squareup.dagger:dagger-compiler:1.2.2"
+
     //Don't know why it doesn't work without it
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.0') {
-        exclude group: 'javax.inject'
-    }
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.0')
     androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.0') {
-        exclude group: 'javax.inject'
         exclude group: 'com.android.support'
     }
     androidTestCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
@@ -97,8 +100,6 @@ task codenarc(type: CodeNarc) {
         source(it)
     }
 }
-//tasks connectedAndroidTest.dependsOn codenarc
-//task connectedAndroidTest.dependsOn codenarc
 
 task codeAnalysesForCodeAnalyses
 codeAnalysesForCodeAnalyses.dependsOn "codenarc"
