@@ -15,6 +15,5 @@ class BaseInstrumentationTestCase extends ActivityInstrumentationTestCase2<GameA
     protected void setUp() throws Exception {
         super.setUp()
         Injector.setTestModules(new BaseTestModule())
-        Injector.inject(this.activity,this.activity)
     }
 }
